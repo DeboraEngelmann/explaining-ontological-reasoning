@@ -1,15 +1,15 @@
-// Agent ontology_assistant in project explaining_ontological_reasoning
+// Agent ontology_specialist in project explaining_ontological_reasoning
 
 /* Initial goals */
 
-!start.
+//!start.
 
 /* Plans */
 
 +!start 
 	: true 
 <- 
-	.print("Ontology assistant agent enabled.")
+	.print("Ontology specialist agent enabled.")
 	.print("Let's use an ontology");
 	
 	!fillTheBeliefBase;	

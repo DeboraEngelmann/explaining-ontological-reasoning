@@ -6,9 +6,13 @@
 mas explaining_ontological_reasoning {
 
    
-    agent ontology_assistant:ontology_assistant.asl{
+    agent ontology_specialist:ontology_specialist.asl{
     	focus: onto
     }
+    
+    agent assistant:assistant.asl
+    
+    agent operator:operator.asl
     
 	workspace wp{
 		artifact onto:br.pucrs.smart.ontology.mas.OntologyArtifact("src/resources/HospitalBedAllocation-en3.owl")
