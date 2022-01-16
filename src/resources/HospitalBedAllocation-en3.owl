@@ -1513,11 +1513,6 @@
         <NamedIndividual IRI="#Dermatology"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
-        <ObjectProperty IRI="#occupy-one"/>
-        <NamedIndividual IRI="#Patient2"/>
-        <NamedIndividual IRI="#103b"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
         <ObjectProperty IRI="#is-care"/>
         <NamedIndividual IRI="#Patient3"/>
         <NamedIndividual IRI="#Intensive-Care"/>
@@ -1526,6 +1521,11 @@
         <ObjectProperty IRI="#is-speciality"/>
         <NamedIndividual IRI="#Patient3"/>
         <NamedIndividual IRI="#Cardiology"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#occupy-one"/>
+        <NamedIndividual IRI="#Patient3"/>
+        <NamedIndividual IRI="#103b"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#is-care"/>

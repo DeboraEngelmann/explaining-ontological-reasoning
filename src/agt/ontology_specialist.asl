@@ -2,27 +2,43 @@
 
 /* Initial goals */
 
-//!start.
+!start.
 
 /* Plans */
+
+
++!kqml_received(Sender,question,Pred,MsgId)
+	<-	
+		!isRelated(Pred,IsRelated);
+		!getAnswer(Pred,IsRelated,Explanation);
+		.send(Sender,assert,Pred[Explanation]).
+
+
++!getAnswer(Pred,IsRelated,Answer)
+	: IsRelated == false
+<-
+	Answer= ~Pred;
+	.
++!getAnswer(Pred,IsRelated,Answer)
+	: IsRelated == true
+<-
+	!getExplanation(Pred, Explanation);
+	Answer = Explanation;
+	.
 
 +!start 
 	: true 
 <- 
-	.print("Ontology specialist agent enabled.")
-	.print("Let's use an ontology");
-	
-	!fillTheBeliefBase;	
-	
-	!getExplanation(is_unsuitable_for("101b", "Patient2"), Explanation);
-	!print("Explanation", Explanation);
+	!fillTheBeliefBase;
+	.print("Agent ontology_specialist enabled.")
 	.
 	
 +!getExplanation(Pred, Explanation)
 	: Pred =..[Header,Content,X] & objectProperty(OpString,Header)
 <-
-	.print("Get the reasoner's explanation");
+	.print("Get the reasoner's explanation for ", Pred);
 	getExplanation(OpString,Pred,Axioms);
+	!addToBB(Axioms);
 	!instantiateArgumentScheme(Pred,Axioms,Explanation);
 	.
 
@@ -49,14 +65,10 @@
 	!addToBB(AssertionsList);
 	!addToBB(ClassInfoList);
 	.
-+!addToBB([])
-<-
-	.print("End of list")
-	.
++!addToBB([]).
 +!addToBB([H|T])
 <-
 	+H;
-	.print(H);
 	!addToBB(T);
 	.
 	
@@ -73,14 +85,16 @@
 	
 +!fillTheBeliefBase
 <- 
-	.print("Getting classes in ontology");
+//	.print("Getting classes in ontology");
 	getClassNames(ClassNames);
-	.print("Adding Classes to the belief base");
+//	.print("Adding Classes to the belief base");
 	!addToTheBeliefBase(ClassNames);
-	.print("Getting ObjectProperties in ontology");
+//	.print("Getting ObjectProperties in ontology");
 	getObjectPropertyNames(ObjectPropertyNames);
-	.print("Adding ObjectProperties to the belief base");
+//	.print("Adding ObjectProperties to the belief base");
 	!addToTheBeliefBase(ObjectPropertyNames);
+	getObjectPropertyAssertions(Assertions);
+	!addToTheBeliefBase(Assertions);
 	.
 
 +!addToTheBeliefBase([]).	
@@ -88,6 +102,15 @@
 <-
 	+H;
 	!addToTheBeliefBase(T)
+	.
+
++!isRelated(Pred,IsRelated)
+	:  Pred =..[Header,Content,X] & objectProperty(OpString,Header)
+<-
+	.nth(0,Content,Domain);
+	.nth(1,Content,Range);
+	isRelated(Domain,OpString,Range,IsRelated);
+	.print(Pred, " = ", IsRelated);
 	.
 
 +!isRelated(Domain, Property, Range, IsRelated)
