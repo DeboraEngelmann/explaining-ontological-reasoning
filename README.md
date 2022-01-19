@@ -11,3 +11,14 @@ By [Débora C. Engelmann](https://github.com/DeboraEngelmann),
 - Eclipse >= Oxygen
 - JaCaMo 0.9
 - Gradle 6.8.3
+
+## To run
+
+Open a terminal in the project root folder and run:
+```
+gradle build
+```
+And then: 
+```
+gradle run
+```
