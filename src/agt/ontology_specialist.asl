@@ -30,15 +30,23 @@
 	: true 
 <- 
 	!fillTheBeliefBase;
-	.print("Agent ontology_specialist enabled.")
+//	.print("Agent ontology_specialist enabled.")
 	.
 	
+//+!getExplanation(Pred, Explanation)
+//	: .print("Aqui-> ", Pred) & argument(Pred,Arg)
+//<-	
+//	.print("************************** ");
+//	.print(Arg);
+//	Explanation=Arg;
+//	.
 +!getExplanation(Pred, Explanation)
 	: Pred =..[Header,Content,X] & objectProperty(OpString,Header)
 <-
-	.print("Get the reasoner's explanation for ", Pred);
+//	.print("Get the reasoner's explanation for ", Pred);
 	getExplanation(OpString,Pred,Axioms);
 	!addToBB(Axioms);
+
 	!instantiateArgumentScheme(Pred,Axioms,Explanation);
 	.
 
@@ -48,7 +56,7 @@
 +!instantiateArgumentScheme(Pred,explanationTerms(rules(RulesList),assertions(AssertionsList),classInfo(ClassInfoList)),Explanation)
 <-
 	.concat([Pred],AssertionsList,Assertions);
-	.print("Instantiate argument schemes");
+//	.print("Instantiate argument schemes");
 	!instantiateArgumentScheme(RulesList,Assertions,Explanation);
 	.
 +!instantiateArgumentScheme(RulesList,AssertionsList,Explanation)
@@ -72,7 +80,7 @@
 	!addToBB(T);
 	.
 	
-	
+
 +!print(_,[])
 <-
 	.print("End of list");	
@@ -110,7 +118,7 @@
 	.nth(0,Content,Domain);
 	.nth(1,Content,Range);
 	isRelated(Domain,OpString,Range,IsRelated);
-	.print(Pred, " = ", IsRelated);
+//	.print(Pred, " = ", IsRelated);
 	.
 
 +!isRelated(Domain, Property, Range, IsRelated)
@@ -155,6 +163,7 @@
 	
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
+//{ include("reasoning/abr_in_aopl_with_as_v2.asl")}
 
 // uncomment the include below to have an agent compliant with its organisation
 //{ include("$moiseJar/asl/org-obedient.asl") }

@@ -36,9 +36,9 @@ public class AxiomTranslator {
 				List<SWRLAtom> head = rule.headList();
 				
 				Collection<Term> bodyTerms = getTermsBySWRLAtoms(body);
-				Collection<Term> headTerms = getTermsBySWRLAtoms(head);
+				Term headTerms = getTermsBySWRLAtomsHead(head);
 				
-				Literal dF = ASSyntax.createLiteral("defeasible_rule", ASSyntax.createList(headTerms));
+				Literal dF = ASSyntax.createLiteral("defeasible_rule", headTerms);
 				dF.addTerm(ASSyntax.createList(bodyTerms));
 				UUID uniqueKey = UUID.randomUUID();
 				dF.addAnnot(ASSyntax.createLiteral("as", ASSyntax.createString("scheme_"+OntoQueryLayerLiteral.getNameForJason(uniqueKey.toString()))));
@@ -160,7 +160,36 @@ public class AxiomTranslator {
 		return terms;
 	}
 	
-	
+	static Term getTermsBySWRLAtomsHead(List<SWRLAtom> atoms) {
+		Term term;
+
+			SWRLAtom entity = atoms.get(0);
+			String uriPred = entity.getPredicate().toString();
+			String pred = uriPred.substring((uriPred.contains("owl:") ? uriPred.indexOf("owl:")+4 : uriPred.indexOf("#")+1), (uriPred.contains(">") ? uriPred.indexOf(">") : uriPred.length()));
+			String jPred = OntoQueryLayerLiteral.getNameForJason(pred);
+			Literal l = ASSyntax.createLiteral(jPred);
+			
+			List<?> var = entity.components().collect(Collectors.toList());
+			var.forEach(v -> {
+				String vs = v.toString();
+				if (!vs.contains(pred)) {
+					if (vs.contains("Variable")) {
+						if(vs.contains("xsd:integer")) {
+							// for example [Variable(<urn:swrl:var#A>), "17"^^xsd:integer]
+							l.addTerm(ASSyntax.createAtom(vs.substring((vs.indexOf("#")+1), vs.indexOf(">"))));
+							l.addTerm(ASSyntax.createAtom(vs.substring((vs.indexOf(",")+3), (vs.indexOf("^^")-1))));
+						} else {
+							l.addTerm(ASSyntax.createAtom(vs.substring((vs.indexOf("#")+1), vs.indexOf(">"))));
+						}
+					} else {
+						l.addTerm(ASSyntax.createAtom(OntoQueryLayerLiteral.getNameForJason(vs.substring((vs.indexOf("#")+1), vs.indexOf(">")))));
+					}
+				}
+			});
+			term =l;
+
+		return term;
+	}
 	static boolean hasType(OWLAxiom axiom, String type) {
 		AxiomType<?> aType = axiom.getAxiomType();
 		return aType.equals(AxiomType.getAxiomType(type));
