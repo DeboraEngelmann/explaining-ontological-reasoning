@@ -28,7 +28,9 @@ defeasible_rule(bedroom_is_isolation(Z,I),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z)
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-isolation(?Y,?I)->bedroom-is-isolation(?Z,?I)
 ```
 <br>
+
 #
+
 <br>
 <table>
   <tr>
@@ -56,6 +58,9 @@ Patient(?X),is-isolation(?X,?I),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-isola
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -84,6 +89,9 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-isolation(?Z,?I)->bed-is-is
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -113,6 +121,9 @@ Patient(?X),is-care(?X,?C),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-care(?Y,?C
 
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -141,6 +152,9 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-care(?Z,?C)->bed-is-care(?Y
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -169,6 +183,9 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-care(?Y,?C)->bedroom-is-care(?Z
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -197,6 +214,9 @@ Patient(?X),has-one-attendance(?X,?R)->is-routing(?X,?R)
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -225,6 +245,9 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-routing(?Y,?R)->bedroom-is-rout
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -253,6 +276,9 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-routing(?Z,?R)->bed-is-rout
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -281,6 +307,9 @@ Patient(?X),is-routing(?X,?R),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-routing
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -309,6 +338,9 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-the-attendance(?Y,?At)->bedroom
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -337,6 +369,9 @@ Patient(?X),is-the-attendance(?X,?At),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -365,6 +400,9 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-the-attendance(?Z,?At)->bed
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -393,6 +431,9 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-stay(?Y,?P)->bedroom-is-stay(?Z
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -421,6 +462,9 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-stay(?Z,?P)->bed-is-stay(?Y
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -449,6 +493,9 @@ Patient(?X),is-stay(?X,?P),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-stay(?Y,?P
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -477,6 +524,9 @@ Patient(?X),is-years-old(?X,?A),lessThan(?A,12)->is-of-the-age-group(?X,Child)
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -505,6 +555,9 @@ Patient(?X),is-years-old(?X,?A),greaterThan(?A,11),lessThan(?A,18)->is-of-the-ag
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -533,6 +586,9 @@ Patient(?X),is-years-old(?X,?A),greaterThan(?A,17)->is-of-the-age-group(?X,Adult
 ```
 
 <br>
+
+#
+
 <br>
 
 <table>
@@ -561,6 +617,11 @@ Patient(?X),is-of-the-age-group(?X,?Ag),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-
 ```
 
 <br>
+
+
+#
+
+
 <br>
 
 <table>
@@ -589,6 +650,11 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-of-the-age-group(?Y,?Ag)->bedro
 ```
 
 <br>
+
+
+#
+
+
 <br>
 
 <table>
@@ -617,6 +683,11 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-of-the-age-group(?Z,?Ag)->b
 ```
 
 <br>
+
+
+#
+
+
 <br>
 
 <table>
@@ -645,6 +716,11 @@ Patient(?X),Man(?X)->is-of-the-gender(?X,Male)
 ```
 
 <br>
+
+
+#
+
+
 <br>
 
 <table>
@@ -673,6 +749,10 @@ Patient(?X),Woman(?X)->is-of-the-gender(?X,Female)
 ```
 
 <br>
+
+#
+
+
 <br>
 
 <table>
@@ -701,6 +781,10 @@ Patient(?X),is-of-the-gender(?X,?G),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-o
 ```
 
 <br>
+
+#
+
+
 <br>
 
 <table>
@@ -729,6 +813,10 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-of-the-gender(?Z,?G)->bed-i
 ```
 
 <br>
+
+#
+
+
 <br>
 
 <table>
@@ -757,6 +845,10 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-of-the-gender(?Y,?G)->bedroom-i
 ```
 
 <br>
+
+#
+
+
 <br>
 
 <table>
@@ -785,6 +877,10 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-speciality(?Y,?S)->bedroom-is-s
 ```
 
 <br>
+
+#
+
+
 <br>
 
 <table>
@@ -813,6 +909,10 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-speciality(?Z,?S)->bed-is-s
 ```
 
 <br>
+
+#
+
+
 <br>
 
 <table>
@@ -841,6 +941,10 @@ Patient(?X),is-speciality(?X,?S),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-spec
 ```
 
 <br>
+
+#
+
+
 <br>
 
 <table>
@@ -871,6 +975,10 @@ Patient(?X),Hospital_Bed(?Y),is-of-the-gender(?X,?G),bed-is-of-the-gender(?Y,?G)
 ```
 
 <br>
+
+#
+
+
 <br>
 
 <table>
@@ -899,6 +1007,10 @@ Patient(?X),Hospital_Bed(?Y),is-of-the-gender(?X,?Gp),bed-is-of-the-gender(?Y,?G
 ```
 
 <br>
+
+#
+
+
 <br>
 
 
@@ -928,6 +1040,10 @@ Patient(?X),Hospital_Bed(?Y),is-care(?X,?Cp),bed-is-care(?Y,?Cb),DifferentFrom(?
 ```
 
 <br>
+
+#
+
+
 <br>
 
 <table>
@@ -956,6 +1072,10 @@ Patient(?X),Hospital_Bed(?Y),is-speciality(?X,?Sp),bed-is-speciality(?Y,?Sb),Dif
 ```
 
 <br>
+
+#
+
+
 <br>
  
 <table>
@@ -985,6 +1105,10 @@ Patient(?X),Hospital_Bed(?Y),is-of-the-age-group(?X,?Ap),bed-is-of-the-age-group
 ```
 
 <br>
+
+#
+
+
 <br>
 
 <table>
@@ -1013,6 +1137,10 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-puerperal(?Z,?Q)->bed-is-pu
 ```
 
 <br>
+
+#
+
+
 <br>
 
 <table>
@@ -1041,6 +1169,10 @@ Patient(?X),is-puerperal(?X,?Q),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-puerp
 ```
 
 <br>
+
+#
+
+
 <br>
 
 <table>
@@ -1069,6 +1201,10 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-puerperal(?Y,?Q)->bedroom-is-pu
 ```
 
 <br>
+
+#
+
+
 <br>
 
 <table>
@@ -1097,6 +1233,10 @@ Patient(?X),is-discharged-from(?X,?D),occupy-one(?X,?Y)->vacates-one(?X,?Y),is-v
 ```
 
 <br>
+
+#
+
+
 <br>
 
 <table>
