@@ -19,9 +19,11 @@ This document contains the argumentation schemes extracted from the multi-agent 
      <td height="40">Therefore, bedroom Z is of isolation I.</td>
   </tr>
 </table>
+
 ``` javascript
 defeasible_rule(bedroom_is_isolation(Z,I),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z),bed_is_isolation(Y,I)])[as(_)]
 ```
+
 ``` css
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-isolation(?Y,?I)->bedroom-is-isolation(?Z,?I)
 ```
