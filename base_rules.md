@@ -27,11 +27,9 @@ defeasible_rule(bedroom_is_isolation(Z,I),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z)
 ``` css
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-isolation(?Y,?I)->bedroom-is-isolation(?Z,?I)
 ```
-<br>
 
 #
 
-<br>
 <table>
   <tr>
     <td height="40">Major Premise</td>
@@ -57,11 +55,7 @@ defeasible_rule(bed_is_isolation(Y,I),[patient(X),is_isolation(X,I),hospital_Bed
 Patient(?X),is-isolation(?X,?I),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-isolation(?Y,?I)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -88,11 +82,7 @@ defeasible_rule(bed_is_isolation(Y,I),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z),bed
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-isolation(?Z,?I)->bed-is-isolation(?Y,?I)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -119,12 +109,7 @@ defeasible_rule(bed_is_care(Y,C),[patient(X),is_care(X,C),hospital_Bed(Y),occupy
 Patient(?X),is-care(?X,?C),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-care(?Y,?C)
 ```
 
-
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -151,11 +136,7 @@ defeasible_rule(bed_is_care(Y,C),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z),bedroom_
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-care(?Z,?C)->bed-is-care(?Y,?C)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -182,11 +163,7 @@ defeasible_rule(bedroom_is_care(Z,C),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z),bed_
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-care(?Y,?C)->bedroom-is-care(?Z,?C)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -213,11 +190,7 @@ defeasible_rule(is_routing(X,R),[patient(X),has_one_attendance(X,R)])[as(_)]
 Patient(?X),has-one-attendance(?X,?R)->is-routing(?X,?R)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -244,11 +217,7 @@ defeasible_rule(bedroom_is_routing(Z,R),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z),b
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-routing(?Y,?R)->bedroom-is-routing(?Z,?R)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -275,11 +244,7 @@ defeasible_rule(bed_is_routing(Y,R),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z),bedro
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-routing(?Z,?R)->bed-is-routing(?Y,?R)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -306,11 +271,7 @@ defeasible_rule(bed_is_routing(Y,R),[patient(X),is_routing(X,R),hospital_Bed(Y),
 Patient(?X),is-routing(?X,?R),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-routing(?Y,?R)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -337,11 +298,7 @@ defeasible_rule(bedroom_is_the_attendance(Z,At),[hospital_Bed(Y),bedroom(Z),is_i
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-the-attendance(?Y,?At)->bedroom-is-the-attendance(?Z,?At)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -368,11 +325,7 @@ defeasible_rule(bed_is_the_attendance(Y,At),[patient(X),is_the_attendance(X,At),
 Patient(?X),is-the-attendance(?X,?At),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-the-attendance(?Y,?At)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -399,11 +352,7 @@ defeasible_rule(bed_is_the_attendance(Y,At),[hospital_Bed(Y),bedroom(Z),is_in(Y,
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-the-attendance(?Z,?At)->bed-is-the-attendance(?Y,?At)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -430,11 +379,7 @@ defeasible_rule(bedroom_is_stay(Z,P),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z),bed_
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-stay(?Y,?P)->bedroom-is-stay(?Z,?P)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -461,11 +406,7 @@ defeasible_rule(bed_is_stay(Y,P),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z),bedroom_
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-stay(?Z,?P)->bed-is-stay(?Y,?P)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -492,11 +433,7 @@ defeasible_rule(bed_is_stay(Y,P),[patient(X),is_stay(X,P),hospital_Bed(Y),occupy
 Patient(?X),is-stay(?X,?P),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-stay(?Y,?P)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -523,11 +460,7 @@ defeasible_rule(is_of_the_age_group(X,child),[patient(X),is_years_old(X,A),lessT
 Patient(?X),is-years-old(?X,?A),lessThan(?A,12)->is-of-the-age-group(?X,Child)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -554,11 +487,7 @@ defeasible_rule(is_of_the_age_group(X,teenager),[patient(X),is_years_old(X,A),gr
 Patient(?X),is-years-old(?X,?A),greaterThan(?A,11),lessThan(?A,18)->is-of-the-age-group(?X,Teenager)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -585,11 +514,7 @@ defeasible_rule(is_of_the_age_group(X,adult),[patient(X),is_years_old(X,A),great
 Patient(?X),is-years-old(?X,?A),greaterThan(?A,17)->is-of-the-age-group(?X,Adult)
 ```
 
-<br>
-
 #
-
-<br>
 
 <table>
   <tr>
@@ -609,20 +534,15 @@ Patient(?X),is-years-old(?X,?A),greaterThan(?A,17)->is-of-the-age-group(?X,Adult
 </table>
 
 ``` javascript
-defeasible_rule(bed_is_of_the_age_group(Y,Ag),[patient(X),is_of_the_age_group(X,Ag),hospital_Bed(Y),occupy_one(X,Y)])[as(_)]
+defeasible_rule(bed_is_of_the_age_group(Y,Ag),
+    [patient(X),is_of_the_age_group(X,Ag),hospital_Bed(Y),occupy_one(X,Y)])[as(_)]
 ```
 
 ``` css
 Patient(?X),is-of-the-age-group(?X,?Ag),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-of-the-age-group(?Y,?Ag)
 ```
 
-<br>
-
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -642,20 +562,15 @@ Patient(?X),is-of-the-age-group(?X,?Ag),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-
 </table>
 
 ``` javascript
-defeasible_rule(bedroom_is_of_the_age_group(Z,Ag),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z),bed_is_of_the_age_group(Y,Ag)])[as(_)]
+defeasible_rule(bedroom_is_of_the_age_group(Z,Ag),
+    [hospital_Bed(Y),bedroom(Z),is_in(Y,Z),bed_is_of_the_age_group(Y,Ag)])[as(_)]
 ```
 
 ``` css
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-of-the-age-group(?Y,?Ag)->bedroom-is-of-the-age-group(?Z,?Ag)
 ```
 
-<br>
-
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -675,20 +590,15 @@ Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-of-the-age-group(?Y,?Ag)->bedro
 </table>
 
 ``` javascript
-defeasible_rule(bed_is_of_the_age_group(Y,Ag),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z),bedroom_is_of_the_age_group(Z,Ag)])[as(_)]
+defeasible_rule(bed_is_of_the_age_group(Y,Ag),
+    [hospital_Bed(Y),bedroom(Z),is_in(Y,Z),bedroom_is_of_the_age_group(Z,Ag)])[as(_)]
 ```
 
 ``` css
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-of-the-age-group(?Z,?Ag)->bed-is-of-the-age-group(?Y,?Ag)
 ```
 
-<br>
-
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -715,13 +625,7 @@ defeasible_rule(is_of_the_gender(X,male),[patient(X),man(X)])[as(_)]
 Patient(?X),Man(?X)->is-of-the-gender(?X,Male)
 ```
 
-<br>
-
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -748,12 +652,7 @@ defeasible_rule(is_of_the_gender(X,female),[patient(X),woman(X)])[as(_)]
 Patient(?X),Woman(?X)->is-of-the-gender(?X,Female)
 ```
 
-<br>
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -780,12 +679,7 @@ defeasible_rule(bed_is_of_the_gender(Y,G),[patient(X),is_of_the_gender(X,G),hosp
 Patient(?X),is-of-the-gender(?X,?G),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-of-the-gender(?Y,?G)
 ```
 
-<br>
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -812,12 +706,7 @@ defeasible_rule(bed_is_of_the_gender(Y,G),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z)
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-of-the-gender(?Z,?G)->bed-is-of-the-gender(?Y,?G)
 ```
 
-<br>
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -844,12 +733,7 @@ defeasible_rule(bedroom_is_of_the_gender(Z,G),[hospital_Bed(Y),bedroom(Z),is_in(
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-of-the-gender(?Y,?G)->bedroom-is-of-the-gender(?Z,?G)
 ```
 
-<br>
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -876,12 +760,7 @@ defeasible_rule(bedroom_is_speciality(Z,S),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-speciality(?Y,?S)->bedroom-is-speciality(?Z,?S)
 ```
 
-<br>
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -908,12 +787,7 @@ defeasible_rule(bed_is_speciality(Y,S),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z),be
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-speciality(?Z,?S)->bed-is-speciality(?Y,?S)
 ```
 
-<br>
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -940,12 +814,7 @@ defeasible_rule(bed_is_speciality(Y,S),[patient(X),is_speciality(X,S),hospital_B
 Patient(?X),is-speciality(?X,?S),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-speciality(?Y,?S)
 ```
 
-<br>
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -971,15 +840,12 @@ defeasible_rule(is_suitable_for(Y,X),
 ```
 
 ``` css
-Patient(?X),Hospital_Bed(?Y),is-of-the-gender(?X,?G),bed-is-of-the-gender(?Y,?G),is-of-the-age-group(?X,?Ag),bed-is-of-the-age-group(?Y,?Ag),is-speciality(?X,?S),bed-is-speciality(?Y,?S),is-care(?X,?C),bed-is-care(?Y,?C)->is-suitable-for(?Y,?X)
+Patient(?X),Hospital_Bed(?Y),is-of-the-gender(?X,?G),bed-is-of-the-gender(?Y,?G),is-of-the-age-group(?X,?Ag),
+    bed-is-of-the-age-group(?Y,?Ag),is-speciality(?X,?S),bed-is-speciality(?Y,?S),is-care(?X,?C),
+    bed-is-care(?Y,?C)->is-suitable-for(?Y,?X)
 ```
 
-<br>
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -999,20 +865,16 @@ Patient(?X),Hospital_Bed(?Y),is-of-the-gender(?X,?G),bed-is-of-the-gender(?Y,?G)
 </table>
 
 ``` javascript
-    defeasible_rule(is_unsuitable_for(Y,X),[patient(X),hospital_Bed(Y),is_of_the_gender(X,Gp),bed_is_of_the_gender(Y,Gb),differentFrom(Gp,Gb)])[as(_)]
+defeasible_rule(is_unsuitable_for(Y,X),
+    [patient(X),hospital_Bed(Y),is_of_the_gender(X,Gp),bed_is_of_the_gender(Y,Gb),differentFrom(Gp,Gb)])[as(_)]
 ```
 
 ``` css
-Patient(?X),Hospital_Bed(?Y),is-of-the-gender(?X,?Gp),bed-is-of-the-gender(?Y,?Gb),DifferentFrom(?Gp,?Gb)->is-unsuitable-for(?Y,?X)
+Patient(?X),Hospital_Bed(?Y),is-of-the-gender(?X,?Gp),bed-is-of-the-gender(?Y,?Gb),
+    DifferentFrom(?Gp,?Gb)->is-unsuitable-for(?Y,?X)
 ```
 
-<br>
-
 #
-
-
-<br>
-
 
 <table>
   <tr>
@@ -1032,19 +894,15 @@ Patient(?X),Hospital_Bed(?Y),is-of-the-gender(?X,?Gp),bed-is-of-the-gender(?Y,?G
 </table>
 
 ``` javascript
-defeasible_rule(is_unsuitable_for(Y,X),[patient(X),hospital_Bed(Y),is_care(X,Cp),bed_is_care(Y,Cb),differentFrom(Cp,Cb)])[as(_)]
+defeasible_rule(is_unsuitable_for(Y,X),
+    [patient(X),hospital_Bed(Y),is_care(X,Cp),bed_is_care(Y,Cb),differentFrom(Cp,Cb)])[as(_)]
 ```
 
 ``` css
 Patient(?X),Hospital_Bed(?Y),is-care(?X,?Cp),bed-is-care(?Y,?Cb),DifferentFrom(?Cp,?Cb)->is-unsuitable-for(?Y,?X)
 ```
 
-<br>
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -1064,20 +922,17 @@ Patient(?X),Hospital_Bed(?Y),is-care(?X,?Cp),bed-is-care(?Y,?Cb),DifferentFrom(?
 </table>
 
 ``` javascript
-defeasible_rule(is_unsuitable_for(Y,X),[patient(X),hospital_Bed(Y),is_speciality(X,Sp),bed_is_speciality(Y,Sb),differentFrom(Sp,Sb)])[as(_)]
+defeasible_rule(is_unsuitable_for(Y,X),
+    [patient(X),hospital_Bed(Y),is_speciality(X,Sp),bed_is_speciality(Y,Sb),differentFrom(Sp,Sb)])[as(_)]
 ```
 
 ``` css
-Patient(?X),Hospital_Bed(?Y),is-speciality(?X,?Sp),bed-is-speciality(?Y,?Sb),DifferentFrom(?Sp,?Sb)->is-unsuitable-for(?Y,?X)
+Patient(?X),Hospital_Bed(?Y),is-speciality(?X,?Sp),bed-is-speciality(?Y,?Sb),
+    DifferentFrom(?Sp,?Sb)->is-unsuitable-for(?Y,?X)
 ```
-
-<br>
 
 #
 
-
-<br>
- 
 <table>
   <tr>
     <td height="40">Major Premise</td>
@@ -1101,15 +956,11 @@ defeasible_rule(is_unsuitable_for(Y,X),
 ```
 
 ``` css
-Patient(?X),Hospital_Bed(?Y),is-of-the-age-group(?X,?Ap),bed-is-of-the-age-group(?Y,?Ab),DifferentFrom(?Ap,?Ab)->is-unsuitable-for(?Y,?X)
+Patient(?X),Hospital_Bed(?Y),is-of-the-age-group(?X,?Ap),bed-is-of-the-age-group(?Y,?Ab),
+    DifferentFrom(?Ap,?Ab)->is-unsuitable-for(?Y,?X)
 ```
 
-<br>
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -1136,12 +987,7 @@ defeasible_rule(bed_is_puerperal(Y,Q),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z),bed
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bedroom-is-puerperal(?Z,?Q)->bed-is-puerperal(?Y,?Q)
 ```
 
-<br>
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -1168,12 +1014,7 @@ defeasible_rule(bed_is_puerperal(Y,Q),[patient(X),is_puerperal(X,Q),hospital_Bed
 Patient(?X),is-puerperal(?X,?Q),Hospital_Bed(?Y),occupy-one(?X,?Y)->bed-is-puerperal(?Y,?Q)
 ```
 
-<br>
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -1200,12 +1041,7 @@ defeasible_rule(bedroom_is_puerperal(Z,Q),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z)
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-puerperal(?Y,?Q)->bedroom-is-puerperal(?Z,?Q)
 ```
 
-<br>
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -1232,12 +1068,7 @@ defeasible_rule(vacates_one(X,Y),[patient(X),is_discharged_from(X,D),occupy_one(
 Patient(?X),is-discharged-from(?X,?D),occupy-one(?X,?Y)->vacates-one(?X,?Y),is-vacated-by(?Y,?X)
 ```
 
-<br>
-
 #
-
-
-<br>
 
 <table>
   <tr>
@@ -1263,3 +1094,5 @@ defeasible_rule(needs_assistance_like(X,hospitalisation),[patient(X),is_classifi
 ``` css
 Patient(?X),is-classified-as(?X,Urgent)->needs-assistance-like(?X,Hospitalisation)
 ```
+
+#
