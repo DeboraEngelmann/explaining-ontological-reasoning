@@ -27,10 +27,8 @@ defeasible_rule(bedroom_is_isolation(Z,I),[hospital_Bed(Y),bedroom(Z),is_in(Y,Z)
 ``` css
 Hospital_Bed(?Y),Bedroom(?Z),is-in(?Y,?Z),bed-is-isolation(?Y,?I)->bedroom-is-isolation(?Z,?I)
 ```
-
 <br>
 <br>
-
 <table>
   <tr>
     <td height="40">Major Premise</td>
