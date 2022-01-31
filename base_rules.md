@@ -1,3 +1,8 @@
+* Argumentation Schemes for Bed Allocation in Hospitals
+
+This document contains the argumentation schemes extracted from the multi-agent application, including their respective templates in natural language.
+
+
 <table>
   <tr>
     <td height="40">Major Premise</td>
