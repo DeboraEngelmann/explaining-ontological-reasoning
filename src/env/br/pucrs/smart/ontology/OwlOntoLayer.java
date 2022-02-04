@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.formats.OWLXMLDocumentFormat;
+import org.semanticweb.owlapi.model.AxiomType;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;
 import org.semanticweb.owlapi.model.OWLAxiom;
@@ -31,7 +32,10 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
+import org.semanticweb.owlapi.model.SWRLRule;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
+
+import br.pucrs.smart.ontology.mas.AxiomTranslator;
 
 public class OwlOntoLayer {
     protected OWLOntology ontology = null;
@@ -133,7 +137,36 @@ public class OwlOntoLayer {
     	});
     	return axioms;
     }
-
+    
+    public List<OWLClassAssertionAxiom> getClassAssertionAxioms() {
+    	List<OWLIndividual> individuals = getIndividuals();
+    	List<OWLClassAssertionAxiom> axioms = new ArrayList<OWLClassAssertionAxiom>();
+    	individuals.forEach(i -> {
+    		axioms.addAll(this.ontology.classAssertionAxioms(i).collect(Collectors.toList()));
+    	});
+    	return axioms;
+    }
+    
+    public List<OWLAxiom> getSWRLRules() {
+    	List<OWLAxiom> axioms = new ArrayList<OWLAxiom>();
+    	this.ontology.axioms().collect(Collectors.toList()).forEach(axiom->{
+    		if(AxiomTranslator.hasType(axiom, "Rule")){
+    			axioms.add(axiom);
+    		}
+    	});
+    	return axioms;
+    }
+    
+    public List<OWLAxiom> getDifferentIndividuals() {
+    	List<OWLAxiom> axioms = new ArrayList<OWLAxiom>();
+    	this.ontology.axioms().collect(Collectors.toList()).forEach(axiom->{
+    		if(AxiomTranslator.hasType(axiom, "DifferentIndividuals")){
+    			axioms.add(axiom);
+    		}
+    	});
+    	return axioms;
+    }
+    
     public boolean isInstanceOf(OWLNamedIndividual instance, OWLClass concept) {
         for (OWLClass clas : this.getInstanceTypes(instance, false)) {
             if (!concept.getIRI().getFragment().equals(clas.getIRI().getFragment())) continue;

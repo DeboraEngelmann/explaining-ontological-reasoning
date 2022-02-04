@@ -1,5 +1,6 @@
 // Agent ontology_specialist in project explaining_ontological_reasoning
 
+differentFrom(X,Y) :- isDifferentFrom(X,Y) | isDifferentFrom(Y,X).
 /* Initial goals */
 
 !start.
@@ -33,17 +34,17 @@
 //	.print("Agent ontology_specialist enabled.")
 	.
 	
-//+!getExplanation(Pred, Explanation)
-//	: .print("Aqui-> ", Pred) & argument(Pred,Arg)
-//<-	
-//	.print("************************** ");
-//	.print(Arg);
-//	Explanation=Arg;
-//	.
++!getExplanation(Pred, Explanation)
+	: .print("Aqui-> ", Pred) & argument(Pred,Arg)
+<-	
+	.print("************************** ");
+	.print(Arg);
+	Explanation=Arg;
+	.
 +!getExplanation(Pred, Explanation)
 	: Pred =..[Header,Content,X] & objectProperty(OpString,Header)
 <-
-//	.print("Get the reasoner's explanation for ", Pred);
+	.print("Get the reasoner's explanation for ", Pred);
 	getExplanation(OpString,Pred,Axioms);
 	!addToBB(Axioms);
 
@@ -103,6 +104,12 @@
 	!addToTheBeliefBase(ObjectPropertyNames);
 	getObjectPropertyAssertions(Assertions);
 	!addToTheBeliefBase(Assertions);
+	getClassAssertions(ClassAssertions);
+	!addToTheBeliefBase(ClassAssertions);
+//	getSWRLRules(SWRLRules);
+//	!addToTheBeliefBase(SWRLRules);
+	getDifferentIndividuals(DiffIndividuals);
+	!addToTheBeliefBase(DiffIndividuals);
 	.
 
 +!addToTheBeliefBase([]).	
@@ -163,7 +170,7 @@
 	
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
-//{ include("reasoning/abr_in_aopl_with_as_v2.asl")}
+{ include("reasoning/abr_in_aopl_with_as_v2.asl")}
 
 // uncomment the include below to have an agent compliant with its organisation
 //{ include("$moiseJar/asl/org-obedient.asl") }

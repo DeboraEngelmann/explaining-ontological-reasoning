@@ -2,6 +2,7 @@ package br.pucrs.smart.ontology.mas;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,7 @@ import cartago.OPERATION;
 import cartago.OpFeedbackParam;
 import jason.asSyntax.ASSyntax;
 import jason.asSyntax.Literal;
+import jason.asSyntax.Term;
 import openllet.owlapi.OWL;
 import openllet.owlapi.OpenlletReasoner;
 import openllet.owlapi.OpenlletReasonerFactory;
@@ -73,7 +75,7 @@ public class OntologyArtifact extends Artifact {
 	 * @param strDomain Name of the domain.
 	 * @param strRange Name of the range.
 	 * @param strobjectProperty Name of the objectProperty.
-	 * @return a string with a set of axioms that explain the reasoner's inference.
+	 * @return a list of translated axioms that explain the reasoner's inference.
 	 */
 	@OPERATION
 	void getExplanation(String strObjectProperty, String parameter, OpFeedbackParam<Literal> axioms) {
@@ -90,6 +92,7 @@ public class OntologyArtifact extends Artifact {
 	        OWLObjectPropertyAssertionAxiom propertyAssertion = dataFactory.getOWLObjectPropertyAssertionAxiom((OWLObjectPropertyExpression)objectProperty, (OWLIndividual)domain, (OWLIndividual)range);
 
 			Set<Set<OWLAxiom>> axiomSets = this.expGen.getEntailmentExplanations((OWLAxiom)propertyAssertion, 10);
+			
 			if (axiomSets.isEmpty()) {
 				axioms.set(ASSyntax.createLiteral("explanationTerms", ASSyntax.createString("empty")));
 			} else {
@@ -145,7 +148,7 @@ public class OntologyArtifact extends Artifact {
 	}
 	
 	/**
-	* @return A list of ({@link OWLObjectProperty}).
+	* @return A list of ({@link OWLObjectProperty}) translated to Literal.
 	*/
 	@OPERATION
 	void getObjectPropertyNames(OpFeedbackParam<Literal[]> objectPropertyNames){
@@ -154,11 +157,10 @@ public class OntologyArtifact extends Artifact {
 	}
 	
 	/**
-	* @return A list of ({@link OWLLogicalAxiom}).
+	* @return A list of ({@link OWLLogicalAxiom}) translated to Literal.
 	*/	
 	@OPERATION
 	void getLogicalAxioms(OpFeedbackParam<Literal[]> logicalAxioms){
-		System.out.println("getLogicalAxioms in Artifact");
 		List<Object> axioms = queryEngine.getLogicalAxioms();
 		logicalAxioms.set(axioms.toArray(new Literal[axioms.size()]));
 	}
@@ -184,6 +186,9 @@ public class OntologyArtifact extends Artifact {
 		isRelated.set(queryEngine.getQuery().isRelated(domainName, propertyName, rangeName));
 	}
 	
+	/**
+	 * @return  A list of ({@link OWLObjectPropertyAssertionAxiom}) translated to Literal.
+	 */
 	@OPERATION
 	void getObjectPropertyAssertions(OpFeedbackParam<Literal[]> opAssertions) {
 		List<Object> assertions = queryEngine.getObjectPropertyAssertionAxioms();
@@ -191,9 +196,36 @@ public class OntologyArtifact extends Artifact {
 	}
 	
 	/**
+	 * @return  A list of ({@link OWLClassAssertionAxiom}) translated to Literal.
+	 */
+	@OPERATION
+	void getClassAssertions(OpFeedbackParam<Literal[]> classAssertions) {
+		List<Object> assertions = queryEngine.getClassAssertionAxioms();
+		classAssertions.set(assertions.toArray(new Literal[assertions.size()]));
+	}
+	
+	/**
+	 * @return  A list of ({@link SWRLRule}) translated to Literal.
+	 */
+	@OPERATION
+	void getSWRLRules(OpFeedbackParam<Literal[]> sWRLRules) {
+		List<Object> assertions = queryEngine.getSWRLRules();
+		sWRLRules.set(assertions.toArray(new Literal[assertions.size()]));
+	}
+	
+	/**
+	 * @return  A list of ({@link OWLDifferentIndividualsAxiom}) translated to Literal.
+	 */
+	@OPERATION
+	void getDifferentIndividuals(OpFeedbackParam<Literal[]> differentIndividuals) {
+		List<Object> assertions = queryEngine.getDifferentIndividuals();
+		differentIndividuals.set(assertions.toArray(new Literal[assertions.size()]));
+	}
+	
+	/**
 	 * @param domain The name of the instance which corresponds to the domain of the property.
 	 * @param propertyName Name of the property
-	 * @return A list of ({@link OWLNamedIndividual}).
+	 * @return A list of ({@link OWLNamedIndividual}) translated to String.
 	 */
 	@OPERATION
 	void getObjectPropertyValues(String domain, String propertyName, OpFeedbackParam<String> instances) {
@@ -205,7 +237,7 @@ public class OntologyArtifact extends Artifact {
 	}
 
 	/**
-	* @return A list of ({@link OWLClass}).
+	* @return A list of ({@link OWLClass}) translated to Literal.
 	*/
 	@OPERATION
 	void getClassNames(OpFeedbackParam<Literal[]> classes){
@@ -247,7 +279,7 @@ public class OntologyArtifact extends Artifact {
 	}
 	
 	/**
-	* @return A list of ({@link OWLAnnotationProperty}).
+	* @return A list of ({@link OWLAnnotationProperty}) translated to Literal.
 	*/
 	@OPERATION
 	void getAnnotationPropertyNames(OpFeedbackParam<Literal[]> AnnotationPropertyNames){
@@ -256,7 +288,7 @@ public class OntologyArtifact extends Artifact {
 	}
 	
 	/**
-	* @return A list of ({@link OWLDataProperty}).
+	* @return A list of ({@link OWLDataProperty}) translated to Literal.
 	*/
 	@OPERATION
 	void getDataPropertyNames(OpFeedbackParam<Literal[]> dataPropertyNames){

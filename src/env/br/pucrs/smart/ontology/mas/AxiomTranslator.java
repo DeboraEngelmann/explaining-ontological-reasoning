@@ -12,6 +12,7 @@ import org.semanticweb.owlapi.model.AxiomType;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClassAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLDataPropertyAssertionAxiom;
+import org.semanticweb.owlapi.model.OWLDifferentIndividualsAxiom;
 import org.semanticweb.owlapi.model.OWLObjectPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLSubClassOfAxiom;
 import org.semanticweb.owlapi.model.SWRLAtom;
@@ -30,20 +31,7 @@ public class AxiomTranslator {
 		for (OWLAxiom axiom : explanation) {
 			
 			if(hasType(axiom, "Rule")){
-//				 defeasible_rule([is_of_age_group(P,adult)],[person(P),age(P,A),greaterThan(A,17)])[as(<nome_do_esquema>)]
-				SWRLRule rule = (SWRLRule) axiom;
-				List<SWRLAtom> body = rule.bodyList();
-				List<SWRLAtom> head = rule.headList();
-				
-				Collection<Term> bodyTerms = getTermsBySWRLAtoms(body);
-				Term headTerms = getTermsBySWRLAtomsHead(head);
-				
-				Literal dF = ASSyntax.createLiteral("defeasible_rule", headTerms);
-				dF.addTerm(ASSyntax.createList(bodyTerms));
-				UUID uniqueKey = UUID.randomUUID();
-				dF.addAnnot(ASSyntax.createLiteral("as", ASSyntax.createString("scheme_"+OntoQueryLayerLiteral.getNameForJason(uniqueKey.toString()))));
-				
-				rules.add(dF);
+				rules.add(translateRule(axiom));
 			} else if(hasType(axiom, "ObjectPropertyDomain")){
 				//ignore
 			} else if(hasType(axiom, "ObjectPropertyRange")){
@@ -65,6 +53,7 @@ public class AxiomTranslator {
 			} else if(hasType(axiom, "DataPropertyDomain")){
 //				//ignore
 			} else if(hasType(axiom, "DifferentIndividuals")){
+				
 //				//ignore
 			} else if(hasType(axiom, "InverseObjectProperties")){
 //				//ignore
@@ -115,9 +104,6 @@ public class AxiomTranslator {
 			}
 		}
 		
-//		assertions.forEach(a->System.out.println(a));
-//		classInfo.forEach(a->System.out.println(a));
-//		rules.forEach(a->System.out.println(a));
 		Literal assertionsLiteral = ASSyntax.createLiteral("assertions", ASSyntax.createList(assertions));
 		Literal classInfoLiteral = ASSyntax.createLiteral("classInfo", ASSyntax.createList(classInfo));
 		Literal rulesLiteral = ASSyntax.createLiteral("rules", ASSyntax.createList(rules));
@@ -145,10 +131,10 @@ public class AxiomTranslator {
 					if (vs.contains("Variable")) {
 						if(vs.contains("xsd:integer")) {
 							// for example [Variable(<urn:swrl:var#A>), "17"^^xsd:integer]
-							l.addTerm(ASSyntax.createAtom(vs.substring((vs.indexOf("#")+1), vs.indexOf(">"))));
+							l.addTerm(ASSyntax.createVar(vs.substring((vs.indexOf("#")+1), vs.indexOf(">"))));
 							l.addTerm(ASSyntax.createAtom(vs.substring((vs.indexOf(",")+3), (vs.indexOf("^^")-1))));
 						} else {
-							l.addTerm(ASSyntax.createAtom(vs.substring((vs.indexOf("#")+1), vs.indexOf(">"))));
+							l.addTerm(ASSyntax.createVar(vs.substring((vs.indexOf("#")+1), vs.indexOf(">"))));
 						}
 					} else {
 						l.addTerm(ASSyntax.createAtom(OntoQueryLayerLiteral.getNameForJason(vs.substring((vs.indexOf("#")+1), vs.indexOf(">")))));
@@ -176,10 +162,10 @@ public class AxiomTranslator {
 					if (vs.contains("Variable")) {
 						if(vs.contains("xsd:integer")) {
 							// for example [Variable(<urn:swrl:var#A>), "17"^^xsd:integer]
-							l.addTerm(ASSyntax.createAtom(vs.substring((vs.indexOf("#")+1), vs.indexOf(">"))));
+							l.addTerm(ASSyntax.createVar(vs.substring((vs.indexOf("#")+1), vs.indexOf(">"))));
 							l.addTerm(ASSyntax.createAtom(vs.substring((vs.indexOf(",")+3), (vs.indexOf("^^")-1))));
 						} else {
-							l.addTerm(ASSyntax.createAtom(vs.substring((vs.indexOf("#")+1), vs.indexOf(">"))));
+							l.addTerm(ASSyntax.createVar(vs.substring((vs.indexOf("#")+1), vs.indexOf(">"))));
 						}
 					} else {
 						l.addTerm(ASSyntax.createAtom(OntoQueryLayerLiteral.getNameForJason(vs.substring((vs.indexOf("#")+1), vs.indexOf(">")))));
@@ -190,9 +176,43 @@ public class AxiomTranslator {
 
 		return term;
 	}
-	static boolean hasType(OWLAxiom axiom, String type) {
+	public static boolean hasType(OWLAxiom axiom, String type) {
 		AxiomType<?> aType = axiom.getAxiomType();
 		return aType.equals(AxiomType.getAxiomType(type));
 	}
 	
+	static Literal translateRule(OWLAxiom axiom) {
+//		 defeasible_rule([is_of_age_group(P,adult)],[person(P),age(P,A),greaterThan(A,17)])[as(<nome_do_esquema>)]
+		SWRLRule rule = (SWRLRule) axiom;
+		List<SWRLAtom> body = rule.bodyList();
+		List<SWRLAtom> head = rule.headList();
+		
+		Collection<Term> bodyTerms = getTermsBySWRLAtoms(body);
+		Term headTerms = getTermsBySWRLAtomsHead(head);
+		
+		Literal dF = ASSyntax.createLiteral("defeasible_rule", headTerms);
+		dF.addTerm(ASSyntax.createList(bodyTerms));
+		UUID uniqueKey = UUID.randomUUID();
+		dF.addAnnot(ASSyntax.createLiteral("as", ASSyntax.createString("scheme_"+OntoQueryLayerLiteral.getNameForJason(uniqueKey.toString()))));
+
+		return dF;
+	}
+	
+	static Collection<Term> translateDifferentIndividual(OWLAxiom axiom) {
+//		differentFrom(A,B)
+		Collection<Term> terms = new LinkedList<Term>();
+		OWLDifferentIndividualsAxiom dIAxiom = (OWLDifferentIndividualsAxiom) axiom;
+		List<?> dIAxiomComponents = (List<?>) dIAxiom.components().collect(Collectors.toList()).get(0);
+		for (int i = 0; i < dIAxiomComponents.size()-1; i++) {
+			String domain = dIAxiomComponents.get(i).toString();
+			for (int j = i+1; j < dIAxiomComponents.size(); j++) {
+				String range = dIAxiomComponents.get(j).toString();
+				Literal l = ASSyntax.createLiteral("isDifferentFrom");
+				l.addTerm(ASSyntax.createString(domain.substring((domain.indexOf("#")+1), domain.indexOf(">"))));
+				l.addTerm(ASSyntax.createString(range.substring((range.indexOf("#")+1), range.indexOf(">"))));
+				terms.add(l);
+			}
+		}
+		return terms;
+	}
 }

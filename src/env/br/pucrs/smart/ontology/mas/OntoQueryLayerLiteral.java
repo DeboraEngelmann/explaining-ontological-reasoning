@@ -2,18 +2,22 @@ package br.pucrs.smart.ontology.mas;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;
+import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLClassAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLLogicalAxiom;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
 import org.semanticweb.owlapi.model.OWLObjectPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.SWRLAtom;
+import org.semanticweb.owlapi.model.SWRLRule;
 
 import br.pucrs.smart.ontology.OntoQueryLayer;
 import br.pucrs.smart.ontology.OwlOntoLayer;
@@ -130,6 +134,39 @@ public class OntoQueryLayerLiteral {
 			l.addTerm(ASSyntax.createString(range.substring((range.indexOf("#")+1), range.indexOf(">"))));
 			
 			axioms.add(l);
+		}
+		return axioms;
+	}
+	
+	public List<Object> getClassAssertionAxioms() {
+		List<Object> axioms = new ArrayList<Object>();
+		for (OWLClassAssertionAxiom axiom : this.ontoQuery.getOntology().getClassAssertionAxioms()) {
+			List<?> classAAxiomComponents = axiom.components().collect(Collectors.toList());
+			
+			String domain = classAAxiomComponents.get(1).toString();
+//			String objectPropertie = classAAxiomComponents.get(1).toString();
+			String range = classAAxiomComponents.get(0).toString();
+			
+			Literal l = ASSyntax.createLiteral(OntoQueryLayerLiteral.getNameForJason(domain.substring((domain.indexOf("#")+1), domain.indexOf(">"))));
+			l.addTerm(ASSyntax.createString(range.substring((range.indexOf("#")+1), range.indexOf(">"))));
+			
+			axioms.add(l);
+		}
+		return axioms;
+	}
+	
+	public List<Object> getSWRLRules() {
+		List<Object> axioms = new ArrayList<Object>();
+		for (OWLAxiom axiom : this.ontoQuery.getOntology().getSWRLRules()) {			
+			axioms.add(AxiomTranslator.translateRule(axiom));
+		}
+		return axioms;
+	}
+	
+	public List<Object> getDifferentIndividuals() {
+		List<Object> axioms = new ArrayList<Object>();
+		for (OWLAxiom axiom : this.ontoQuery.getOntology().getDifferentIndividuals()) {		
+			axioms.addAll(AxiomTranslator.translateDifferentIndividual(axiom));
 		}
 		return axioms;
 	}
