@@ -6,7 +6,7 @@ By [Débora C. Engelmann](https://github.com/DeboraEngelmann),
 [Rafael H. Bordini](https://github.com/rbordini)
 
 
-# Argumentation Schemes 
+## Argumentation Schemes 
 
 All argumentation schemes are available [here](https://github.com/DeboraEngelmann/explaining-ontological-reasoning/blob/42f75daba6bf07e25d87270a4b3e823f23ba5063/base_rules.md).
 
